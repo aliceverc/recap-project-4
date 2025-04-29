@@ -1,8 +1,10 @@
 import { useState } from "react";
 
+// ColorForm.jsx
+// A controlled form that collects role, hex and contrastText for a new theme colour
 export function ColorForm() {
-  // use the useState hook to call an object with default vcalues 'role', 'hex' and 'contrastText'
-  // assign the 'role' value inside the <imput> tag of the 'role' text-field > {formValues.role} and
+  // use the useState hook to call an object with default values 'role', 'hex' and 'contrastText'
+  // assign the 'role' value inside the <input> tag of the 'role' text-field > {formValues.role}
   const [formValues, setFormValues] = useState({
     role: "primary main",
     hex: "#000000",
@@ -13,12 +15,14 @@ export function ColorForm() {
     <>
       <form>
         <h2>Add color</h2>
-        <label>
+        <label htmlFor="role-input">
           Role:
           <input
+            id="role-input"
             type="text"
             name="role"
             value={formValues.role}
+            // copy-and-replace pattern: rebuild the whole object, changing only the field that just changed
             onChange={(event) => {
               const latestText = event.target.value;
               const updatedState = {
