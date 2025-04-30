@@ -1,7 +1,6 @@
 /* This is a modern css reset found here:
 https://www.joshwcomeau.com/css/custom-css-reset/
 */
-
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -57,6 +56,14 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+h1 {
+  color: var(--violet);
+  margin-bottom: 0.5em;
+}
+h2 {
+  color: var(--lightviolet);
+  margin-bottom: 0.5em;
 }
 /*
   8. Create a root stacking context

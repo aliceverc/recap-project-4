@@ -3,6 +3,7 @@ import Color from "./Components/Color/Color";
 import { useState } from "react";
 import { ColorForm } from "./Components/ColorForm/ColorForm";
 import "./App.css";
+import "./global.css";
 
 function App() {
   // call a useState hook and define 'initialColors' as the initial value

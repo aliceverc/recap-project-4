@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ColorInput } from "../ColorInput/ColorInput";
 import { ContrastText } from "../ContrastText/ContrastText";
 import { nanoid } from "nanoid";
+import "./ColorForm.css";
 
 // ColorForm.jsx
 // A controlled form that collects role, hex and contrastText for a new theme colour
@@ -37,7 +38,7 @@ export function ColorForm({ onAddColor }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="wrap_form" onSubmit={handleSubmit}>
         {" "}
         {/* whole form submits via handleSubmit > the Add button just triggers this */}
         {/* return fields to sensible defaults so the user can add another coour quickly */}
@@ -45,6 +46,7 @@ export function ColorForm({ onAddColor }) {
         <label htmlFor="role-input">
           Role:
           <input
+            className="input_field"
             id="role-input"
             type="text"
             name="role"
@@ -59,19 +61,19 @@ export function ColorForm({ onAddColor }) {
               setFormValues(updatedState);
             }}
           ></input>
-          <label>
-            Hex:
-            {/* pass the current hex from state; when child reports a change, copy existing state and overwrite hex only */}
-            <ColorInput
-              value={formValues.hex}
-              onChange={(newHex) =>
-                setFormValues({
-                  ...formValues,
-                  hex: newHex,
-                })
-              }
-            />
-          </label>
+        </label>
+        <label>
+          Hex:
+          {/* pass the current hex from state; when child reports a change, copy existing state and overwrite hex only */}
+          <ColorInput
+            value={formValues.hex}
+            onChange={(newHex) =>
+              setFormValues({
+                ...formValues,
+                hex: newHex,
+              })
+            }
+          />
         </label>
         <label>
           Contrast text:
@@ -86,7 +88,9 @@ export function ColorForm({ onAddColor }) {
             }
           />
         </label>
-        <button type="submit">Add</button>
+        <button className="add_button" type="submit">
+          Add
+        </button>
       </form>
     </>
   );
