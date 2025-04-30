@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { ColorInput } from "../ColorInput/ColorInput";
 import { ContrastText } from "../ContrastText/ContrastText";
+import { nanoid } from "nanoid";
 
 // ColorForm.jsx
 // A controlled form that collects role, hex and contrastText for a new theme colour
-export function ColorForm() {
+export function ColorForm({ onAddColor }) {
   // use the useState hook to call an object with default values 'role', 'hex' and 'contrastText'
   // assign the 'role' value inside the <input> tag of the 'role' text-field > {formValues.role}
   const [formValues, setFormValues] = useState({
@@ -13,9 +14,33 @@ export function ColorForm() {
     contrastText: "#FFFFFF",
   });
 
+  const handleSubmit = (event) => {
+    event.preventDefault(); // stop full-page reload
+
+    // build the new color object
+    const newColor = {
+      ...formValues, // role, hex, contrastText
+      id: nanoid(), // atatch a unique id
+    };
+    console.log(newColor);
+
+    // tell the parent component
+    onAddColor(newColor);
+
+    // clear the form for the next entry
+    setFormValues({
+      role: "primary main",
+      hex: "#000000",
+      contrastText: "#FFFFFF",
+    });
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
+        {" "}
+        {/* whole form submits via handleSubmit > the Add button just triggers this */}
+        {/* return fields to sensible defaults so the user can add another coour quickly */}
         <h2>Add color</h2>
         <label htmlFor="role-input">
           Role:
@@ -32,7 +57,6 @@ export function ColorForm() {
                 role: latestText,
               };
               setFormValues(updatedState);
-              console.log(formValues);
             }}
           ></input>
           <label>
@@ -62,6 +86,7 @@ export function ColorForm() {
             }
           />
         </label>
+        <button type="submit">Add</button>
       </form>
     </>
   );
