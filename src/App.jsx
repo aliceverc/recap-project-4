@@ -16,17 +16,33 @@ function App() {
     setColors([newColor, ...colors]);
   }
 
+  // removes the color card whose id matches the argument
+  // filters out that item and updates the state array
+  function handleDeleteColor(id) {
+    setColors(
+      colors.filter((color) => {
+        return color.id !== id;
+      })
+    );
+  }
+
   return (
     <>
       <h1>Theme Creator</h1>
 
-      {/* pass down the add-callback so the form can hand new colors up */}
+      {/* pass the add-color callback into the form */}
       <ColorForm onAddColor={handleAddColor} />
 
-      {/* swap 'initialColors.map' for 'colors.map' so the UI always reflects the latest state */}
-      {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}
+      {/* If no colours remain, show a friendly prompt; otherwise render the palette */}
+      {colors.length === 0 ? (
+        <p>Your theme is empty. Add some colours to get started!</p>
+      ) : (
+        colors.map((color) => {
+          return (
+            <Color key={color.id} color={color} onDelete={handleDeleteColor} />
+          );
+        })
+      )}
     </>
   );
 }
