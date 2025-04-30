@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ColorInput } from "../ColorInput/ColorInput";
+import { ContrastText } from "../ContrastText/ContrastText";
 
 // ColorForm.jsx
 // A controlled form that collects role, hex and contrastText for a new theme colour
@@ -33,6 +35,32 @@ export function ColorForm() {
               console.log(formValues);
             }}
           ></input>
+          <label>
+            Hex:
+            {/* pass the current hex from state; when child reports a change, copy existing state and overwrite hex only */}
+            <ColorInput
+              value={formValues.hex}
+              onChange={(newHex) =>
+                setFormValues({
+                  ...formValues,
+                  hex: newHex,
+                })
+              }
+            />
+          </label>
+        </label>
+        <label>
+          Contrast text:
+          {/* pass the current hex from state; when child reports a change, copy existing state and overwrite hex only */}
+          <ContrastText
+            value={formValues.contrastText}
+            onChange={(newContrast) =>
+              setFormValues({
+                ...formValues,
+                contrastText: newContrast,
+              })
+            }
+          />
         </label>
       </form>
     </>
