@@ -3,12 +3,14 @@ export function ContrastText({ value, onChange }) {
     <div>
       <label>
         <input
-          type="color"
+          className="input_field_hex"
+          type="text"
           value={value}
           onChange={(event) => onChange(event.target.value)}
         ></input>
         <input
-          type="text"
+          className="input_field"
+          type="color"
           value={value}
           onChange={(event) => onChange(event.target.value)}
         ></input>
