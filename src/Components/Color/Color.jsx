@@ -20,7 +20,9 @@ export default function Color({ color, onDelete }) {
       {/* Confirmation prompt */}
       {isConfirming ? (
         <>
-          <h4>Are you sure you want to delete this color?</h4>
+          <h4 className="color-card-highlight">
+            Are you sure you want to delete this color?
+          </h4>
           {/* Yes: call the parent’s delete handler with our id */}
           <button onClick={() => onDelete(color.id)}>Yes</button>{" "}
           {/* No: cancel and hide the prompt */}
