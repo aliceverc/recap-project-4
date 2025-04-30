@@ -33,13 +33,16 @@ function App() {
       {/* pass the add-color callback into the form */}
       <ColorForm onAddColor={handleAddColor} />
 
-      {/* - render one color card per object in state
-          - pass the delete callback so each card can remove itself */}
-      {colors.map((color) => {
-        return (
-          <Color key={color.id} color={color} onDelete={handleDeleteColor} />
-        );
-      })}
+      {/* If no colours remain, show a friendly prompt; otherwise render the palette */}
+      {colors.length === 0 ? (
+        <p>Your theme is empty. Add some colours to get started!</p>
+      ) : (
+        colors.map((color) => {
+          return (
+            <Color key={color.id} color={color} onDelete={handleDeleteColor} />
+          );
+        })
+      )}
     </>
   );
 }

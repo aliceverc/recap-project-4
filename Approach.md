@@ -44,7 +44,10 @@ Before showing the "Are you sure?" prompt, each card needs to remember whether i
 Now that clicking "Delete" flips the 'isConfirming' flag, let's show the actual "Are you sure?" UI whenever the flag is true:
 
 - wrap the string of code showing the button in a simple if/ternary based on 'isConfirming':
-    * under the 'true' path, render the confirmation text plus two new button-elements
-    * hook their 'onClick'-events to 'setIsConfirming(false)' fo No, and to 'onDelete(color.id) for Yes
+  - under the 'true' path, render the confirmation text plus two new button-elements
+  - hook their 'onClick'-events to 'setIsConfirming(false)' fo No, and to 'onDelete(color.id) for Yes
 
 Once this is working, clicking Delete shows the question, No closes the prompt, and Yes actually removes the card.
+
+f there are no colours left in the theme after deletion, display a message encouraging users to add new colours:
+- in 'App.jsx' insert this check > if 'colors.length' is 0, render a message that says "Your theme is empty. Add some colours to get started!". Otherwise, render the existing colors.map(...) as before.
