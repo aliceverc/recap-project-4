@@ -1,6 +1,6 @@
 # Approach
 
-### 1. Lift the colour list into React stateFile: App.jsx – lets the palette grow dynamically
+### 1. Lift the colour list into React stateFile: App.jsx – let the palette grow dynamically
 
 Create a useState hook in App.jsx that holds the array of colors > once the colors are in state, we can afterwards call a setter from the form and see the new card appear. Without state we'd have nowhere to "push" the newly entered color.
 
@@ -50,4 +50,15 @@ Now that clicking "Delete" flips the 'isConfirming' flag, let's show the actual 
 Once this is working, clicking Delete shows the question, No closes the prompt, and Yes actually removes the card.
 
 f there are no colours left in the theme after deletion, display a message encouraging users to add new colours:
+
 - in 'App.jsx' insert this check > if 'colors.length' is 0, render a message that says "Your theme is empty. Add some colours to get started!". Otherwise, render the existing colors.map(...) as before.
+
+### 7. Edit a color in the Theme
+
+Before showing a form inside the card, add a little local flag saying "this card is being edited" in 'Color.jsx' and wire up a new Edit button to flip it on.
+
+- Swap the card content for the 'ColorForm' when editing:
+  - inside the 'return' in 'Color.jsx', locate where you show the hex, role, contrast, and the Delete/Edit buttons;
+  - if 'isEditing' is true, render the 'ColorForm' conmponent instead. Otherwise, render the normal card view (what you have now);
+  - the form needs to start prefilled with this card's current values. So give it props like 'initialRole={color.role}', 'initialHex={color.hex}', 'initialContrastText={color.contrastText}
+  - pass in the callbacks for saving ot canceling: 1. onSave(updateColor) > you'll call your parent's onDelete/onAdd combination or a new onEdit handler later 2. onCancel() > simply calls setIsEditing(false) to revert

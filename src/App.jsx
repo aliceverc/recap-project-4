@@ -26,20 +26,36 @@ function App() {
     );
   }
 
+  // replace the matching color with its updated version
+  function handleEditColor(updatedColor) {
+    setColors(
+      colors.map((color) =>
+        // if the ids match, swap in the edited object; otherwise leave untouched
+        color.id === updatedColor.id ? updatedColor : color
+      )
+    );
+  }
+
   return (
     <>
-      <h1>Theme Creator</h1>
+      <h1>Color Theme Creator</h1>
 
-      {/* pass the add-color callback into the form */}
-      <ColorForm onAddColor={handleAddColor} />
+      {/* unified form for adding colors: calls handleAddColor via onsave */}
+      <ColorForm onSave={handleAddColor} />
 
-      {/* If no colours remain, show a friendly prompt; otherwise render the palette */}
+      {/* If no colors remain, show a friendly prompt; otherwise render the palette */}
       {colors.length === 0 ? (
         <p>Your theme is empty. Add some colours to get started!</p>
       ) : (
         colors.map((color) => {
           return (
-            <Color key={color.id} color={color} onDelete={handleDeleteColor} />
+            <Color
+              key={color.id}
+              color={color}
+              onDelete={handleDeleteColor}
+              // pass the edit handler so each card can call back with its updated object
+              onSave={handleEditColor}
+            />
           );
         })
       )}

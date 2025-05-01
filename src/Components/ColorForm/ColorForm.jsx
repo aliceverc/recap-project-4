@@ -4,17 +4,23 @@ import { ContrastText } from "../ContrastText/ContrastText";
 import { nanoid } from "nanoid";
 import "./ColorForm.css";
 
-// ColorForm.jsx
 // A controlled form that collects role, hex and contrastText for a new theme colour
-export function ColorForm({ onAddColor }) {
+export function ColorForm({
+  initialRole = "primary main",
+  initialHex = "#000000",
+  initialContrastText = "#FFFFFF",
+  onSave,
+  onCancel,
+}) {
   // use the useState hook to call an object with default values 'role', 'hex' and 'contrastText'
   // assign the 'role' value inside the <input> tag of the 'role' text-field > {formValues.role}
   const [formValues, setFormValues] = useState({
-    role: "primary main",
-    hex: "#000000",
-    contrastText: "#FFFFFF",
+    role: initialRole,
+    hex: initialHex,
+    contrastText: initialContrastText,
   });
 
+  // when the form is submitted, build a complete color object and call onDave
   const handleSubmit = (event) => {
     event.preventDefault(); // stop full-page reload
 
@@ -26,9 +32,9 @@ export function ColorForm({ onAddColor }) {
     console.log(newColor);
 
     // tell the parent component
-    onAddColor(newColor);
+    onSave(newColor);
 
-    // clear the form for the next entry
+    // reset back to defaults when used ad an Add form
     setFormValues({
       role: "primary main",
       hex: "#000000",
@@ -44,9 +50,10 @@ export function ColorForm({ onAddColor }) {
         {/* return fields to sensible defaults so the user can add another coour quickly */}
         <h2>Add color</h2>
         <label htmlFor="role-input">
-          Role:
+          {/* Role input */}
+          <h4>Role:</h4>
           <input
-            className="input_field"
+            className="input_field input_text_hex"
             id="role-input"
             type="text"
             name="role"
@@ -62,8 +69,9 @@ export function ColorForm({ onAddColor }) {
             }}
           ></input>
         </label>
+        {/* Hex input pair */}
         <label>
-          Hex:
+          <h4>Hex:</h4>
           {/* pass the current hex from state; when child reports a change, copy existing state and overwrite hex only */}
           <ColorInput
             value={formValues.hex}
@@ -75,8 +83,9 @@ export function ColorForm({ onAddColor }) {
             }
           />
         </label>
+        {/* Contrast text input pair */}
         <label>
-          Contrast text:
+          <h4>Contrast text:</h4>
           {/* pass the current hex from state; when child reports a change, copy existing state and overwrite hex only */}
           <ContrastText
             value={formValues.contrastText}
@@ -88,8 +97,13 @@ export function ColorForm({ onAddColor }) {
             }
           />
         </label>
+        {/* Submit and Cancel buttons */}
         <button className="add_button" type="submit">
           Add
+        </button>
+        {/* Cancel only appears in the Edit mode; calls onCancel to exit without saving */}
+        <button className="cancel_button" type="button" onClick={onCancel}>
+          Back
         </button>
       </form>
     </>
