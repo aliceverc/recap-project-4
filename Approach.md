@@ -62,3 +62,13 @@ Before showing a form inside the card, add a little local flag saying "this card
   - if 'isEditing' is true, render the 'ColorForm' conmponent instead. Otherwise, render the normal card view (what you have now);
   - the form needs to start prefilled with this card's current values. So give it props like 'initialRole={color.role}', 'initialHex={color.hex}', 'initialContrastText={color.contrastText}
   - pass in the callbacks for saving ot canceling: 1. onSave(updateColor) > you'll call your parent's onDelete/onAdd combination or a new onEdit handler later 2. onCancel() > simply calls setIsEditing(false) to revert
+
+### 8. Persist theme in localStorage
+
+Before touching any code, let's get the helper installed:
+- run the package manager's install command for the local-storage hook: npm install use-local-storage-state
+
+That will give a drop-in replacement for useState that persists into localStorage.
+
+- Import the hook: at the top of 'Add.jsx', add an import for the new package's default export (useLocalStorageState)
+- Replace useState with the local-storage hook with two arguments: 1. a storage key string ('theme-colors'), 2. an options object that sets 'defaultValue' to 'initialColors' > on first load, ir will read from 'localStorage["theme-colors"]'; if nothing's there, it falls back to 'initialColors'. Any time you call 'setColors', it both updates React state and writes the new array into localStorage under that key

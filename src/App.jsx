@@ -4,11 +4,14 @@ import { useState } from "react";
 import { ColorForm } from "./Components/ColorForm/ColorForm";
 import "./App.css";
 import "./global.css";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
   // call a useState hook and define 'initialColors' as the initial value
   // set 'colors' as current state and 'setColors' as set function inside the variable
-  const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useLocalStorageState("theme-colors", {
+    defaultValue: initialColors,
+  });
 
   // callback passed to 'ColorForm' > prepends the new color so the newest entry shows first
   function handleAddColor(newColor) {
@@ -38,7 +41,7 @@ function App() {
 
   return (
     <>
-      <h1>Color Theme Creator</h1>
+      <h1>🫟 Color Theme Creator</h1>
 
       {/* unified form for adding colors: calls handleAddColor via onsave */}
       <ColorForm onSave={handleAddColor} />
