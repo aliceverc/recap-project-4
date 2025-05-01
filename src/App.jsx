@@ -1,6 +1,5 @@
 import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
-import { useState } from "react";
 import { ColorForm } from "./Components/ColorForm/ColorForm";
 import "./App.css";
 import "./global.css";
