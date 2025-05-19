@@ -7,12 +7,12 @@
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   width: 100%;
   font-weight: 600;
-  background-color: var(--lightblue);
+  background-color: var(--lightbg);
 }
 
 .input_field {
   padding: 5px;
-  color: gray;
+  color: var( --input);
   border-radius: 5px;
   font-weight: 400;
   width: 100%;
@@ -22,7 +22,7 @@
   padding: 5px;
   margin-top: 10px;
   border-radius: 5px;
-  color: gray;
+  color: var( --input);
   font-weight: 400;
   width: 100%;
 }
@@ -38,31 +38,29 @@
   cursor: pointer;
 }
 
-.add_button {
-  width: 100%;
-  height: 50px;
-  background-color: var(--violet);
-  color: #fff;
-  font-weight: 800;
+.button {
+  width: 90%;
+  cursor: pointer;
+  padding: 20px 0px;
   font-size: 1em;
+  font-weight: 800;
   border-radius: 5px;
+  align-self: center;
+}
+
+.add_button {
+  background-color: var(--primary);
+  color: #fff;
   line-height: 30px;
 }
 .add_button:hover {
-  cursor: pointer;
-  background-color: var(--lightviolet);
+  background-color: var(--secondary);
 }
 
 .cancel_button {
-  width: 100%;
-  height: 50px;
-  font-weight: 800;
-  font-size: 1em;
-  border-radius: 5px;
   line-height: 30px;
 }
 .cancel_button:hover {
-  cursor: pointer;
-  background-color: var(--lightviolet);
+  background-color: var(--secondary);
   color: #fff;
 }

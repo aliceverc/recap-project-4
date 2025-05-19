@@ -6,9 +6,9 @@ import "./ColorForm.css";
 
 // A controlled form that collects role, hex and contrastText for a new theme colour
 export function ColorForm({
-  initialRole = "primary main",
-  initialHex = "#000000",
-  initialContrastText = "#FFFFFF",
+  initialRole = "",
+  initialHex = "",
+  initialContrastText = "",
   onSave,
   onCancel,
 }) {
@@ -34,11 +34,12 @@ export function ColorForm({
     // tell the parent component
     onSave(newColor);
 
-    // reset back to defaults when used ad an Add form
+    // reset back to defaults when used and an Add form
     setFormValues({
-      role: "primary main",
-      hex: "#000000",
-      contrastText: "#FFFFFF",
+      role: "",
+      hex: "",
+      contrastText: "",
+      // event.target.reset;
     });
   };
 
@@ -53,6 +54,7 @@ export function ColorForm({
           {/* Role input */}
           <h4>Role:</h4>
           <input
+            placeholder="primary main"
             className="input_field input_text_hex"
             id="role-input"
             type="text"
@@ -74,6 +76,7 @@ export function ColorForm({
           <h4>Hex:</h4>
           {/* pass the current hex from state; when child reports a change, copy existing state and overwrite hex only */}
           <ColorInput
+            placeholder="#000000"
             value={formValues.hex}
             onChange={(newHex) =>
               setFormValues({
@@ -88,6 +91,7 @@ export function ColorForm({
           <h4>Contrast text:</h4>
           {/* pass the current hex from state; when child reports a change, copy existing state and overwrite hex only */}
           <ContrastText
+          placeholder="#ffffff"
             value={formValues.contrastText}
             onChange={(newContrast) =>
               setFormValues({
@@ -98,11 +102,15 @@ export function ColorForm({
           />
         </label>
         {/* Submit and Cancel buttons */}
-        <button className="add_button" type="submit">
+        <button className="add_button button" type="submit">
           Add
         </button>
         {/* Cancel only appears in the Edit mode; calls onCancel to exit without saving */}
-        <button className="cancel_button" type="button" onClick={onCancel}>
+        <button
+          className="cancel_button button"
+          type="button"
+          onClick={onCancel}
+        >
           Back
         </button>
       </form>

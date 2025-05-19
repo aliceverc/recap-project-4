@@ -1,5 +1,6 @@
 :root {
-  --violet: #952bf1;
-  --lightviolet: #b36eee;
-  --lightblue: rgba(202, 206, 252, 0.258);
+  --primary: #952bf1;
+  --secondary: #b36eee;
+  --lightbg: rgba(202, 206, 252, 0.258);
+  --input: gray;
 }

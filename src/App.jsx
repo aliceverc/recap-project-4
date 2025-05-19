@@ -1,7 +1,6 @@
 import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import { ColorForm } from "./Components/ColorForm/ColorForm";
-import "./App.css";
 import "./global.css";
 import useLocalStorageState from "use-local-storage-state";
 
@@ -40,7 +39,11 @@ function App() {
 
   return (
     <>
-      <h1>🫟 Color Theme Creator</h1>
+      <h1>🫟 Color Theme Creator 🫟</h1>
+
+      <div className="intro"><p>Color Theme Creator is a simple tool for building and previewing custom color palettes.</p>
+      <p>Add, edit, or remove colours on the fly and see their hex codes, roles, and contrast values in real time.
+      Your theme is saved automatically, so you can close the tab and pick up right where you left off.</p></div>
 
       {/* unified form for adding colors: calls handleAddColor via onsave */}
       <ColorForm onSave={handleAddColor} />

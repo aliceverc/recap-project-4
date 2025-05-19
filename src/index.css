@@ -21,11 +21,16 @@ https://www.joshwcomeau.com/css/custom-css-reset/
   4. Improve text rendering
 */
 body {
-  line-height: 1.5;
+  font-family: "Josefin Sans", "Helvetica Neue", Arial, sans-serif;
+  line-height: 2.5;
   -webkit-font-smoothing: antialiased;
-  
   margin: 0 auto;
-  width: 70%;
+  width: 40%;
+  padding: 10px;
+  background-color: #f0e1ff7f;
+}
+h1 {
+  line-height: 1.5;
 }
 /*
   5. Improve media defaults
@@ -60,16 +65,22 @@ h6 {
   overflow-wrap: break-word;
 }
 h1 {
-  color: var(--violet);
+  font-size: 3em;
+  color: var(--primary);
   margin-bottom: 0.5em;
-  text-align:center;
+  text-align: center;
   margin-top: 1em;
 }
 h2 {
+  font-size: 2em;
+  text-align: center;
   margin-bottom: 0.5em;
 }
 h4 {
   font-size: 1.2em;
+}
+.intro {
+  margin-bottom: 2em;
 }
 /*
   8. Create a root stacking context
@@ -77,4 +88,10 @@ h4 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+@media (max-width: 1600px) {
+  body {
+    width: 90%;
+  }
 }
